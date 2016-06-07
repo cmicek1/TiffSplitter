@@ -33,7 +33,6 @@ class TiffSplitter:
         :type fpath: str
         :type destination: str
 
-        :rtype: None
         """
         image = tf.TiffFile(fpath)
         for i in range(len(image.pages)):
