@@ -48,9 +48,13 @@ class TiffSplitter:
 if __name__ == "__main__":
     root = Tk.Tk()
     root.withdraw()
-    cd = tkFileDialog.askdirectory()
+    cd = tkFileDialog.askdirectory(
+        initialdir=os.path.expanduser('~/Desktop'))
     ts = TiffSplitter(cd)
+    time = 0
     for item in os.listdir(ts.location):
-        if item.endswith(".tif"):
-            path = "{0}/{1}".format(ts.location, item)
-            ts.split(path, path.split(".")[0])
+        if item.endswith("ch1.tif"):
+            path = '{0}/{1}'.format(ts.location, item)
+            ts.split(path, '{0}/Channel/time{1}'.format(path.split(
+                '.')[0].split('_', 1)[1], time))
+            time += 1
